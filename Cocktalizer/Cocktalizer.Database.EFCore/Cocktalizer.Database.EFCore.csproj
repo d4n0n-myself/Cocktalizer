@@ -10,6 +10,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Cocktalizer.Configuration\Cocktalizer.Configuration.csproj" />
       <ProjectReference Include="..\Cocktalizer.Models\Cocktalizer.Models.csproj" />
     </ItemGroup>
 
