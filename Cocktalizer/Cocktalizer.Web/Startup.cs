@@ -18,7 +18,7 @@ namespace Cocktalizer.Web
 
 		public IConfiguration Configuration { get; }
 
-		
+
 		/// <summary>
 		/// This method gets called by the runtime. Use this method to add services to the container.
 		/// </summary>
@@ -28,7 +28,14 @@ namespace Cocktalizer.Web
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
 			services.AddTransient<DatabaseContext>();
-			
+
+			//todo - отмена цикличности сериализации
+//			services.AddMvc()
+//				.AddJsonOptions(
+//					options => options.SerializerSettings.ReferenceLoopHandling =
+//						Newtonsoft.Json.ReferenceLoopHandling.Ignore
+//				);
+
 			// In production, the Angular files will be served from this directory
 			services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/dist"; });
 		}
@@ -46,7 +53,6 @@ namespace Cocktalizer.Web
 				app.UseHsts();
 			}
 
-			app.UseHttpsRedirection();
 			app.UseStaticFiles();
 			app.UseSpaStaticFiles();
 
@@ -59,14 +65,11 @@ namespace Cocktalizer.Web
 
 			app.UseSpa(spa =>
 			{
-				// To learn more about options for serving an Angular SPA from ASP.NET Core,
-				// see https://go.microsoft.com/fwlink/?linkid=864501
-
 				spa.Options.SourcePath = "ClientApp";
 
 				if (env.IsDevelopment())
 				{
-					spa.UseAngularCliServer(npmScript: "start");
+					spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
 				}
 			});
 		}

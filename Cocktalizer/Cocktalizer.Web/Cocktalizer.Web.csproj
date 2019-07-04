@@ -23,9 +23,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Update="appconfig.json">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
+        <Content Update="appconfig.json" CopyToOutputDirectory="PreserveNewest" />
     </ItemGroup>
 
     <ItemGroup>

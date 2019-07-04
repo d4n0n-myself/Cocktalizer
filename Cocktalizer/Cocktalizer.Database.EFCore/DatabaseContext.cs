@@ -7,13 +7,14 @@ namespace Cocktalizer.Database.EFCore
 	public class DatabaseContext : DbContext
 	{
 		public DbSet<Product> Products { get; set; }
-		
+
 		public DbSet<Cocktail> Cocktails { get; set; }
-		
+
 		public DbSet<Ingridient> Ingridients { get; set; }
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
+			Database.EnsureCreated();
 			optionsBuilder.UseNpgsql(ApplicationConfiguration.GetConnectionString());
 			base.OnConfiguring(optionsBuilder);
 		}
