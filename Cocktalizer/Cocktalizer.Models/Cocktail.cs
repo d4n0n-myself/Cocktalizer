@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using Cocktalizer.Models.Core;
 
 namespace Cocktalizer.Models
@@ -7,7 +8,7 @@ namespace Cocktalizer.Models
 	{
 		public string Name { get; set; }
 		public string PrepareMethod { get; set; }
-		public List<Ingridient> Decorations { get; set; }
-		public List<Ingridient> Components { get; set; }
+		[NotMapped] public List<Ingridient> Decorations { get; set; }
+		[NotMapped] public List<Ingridient> Components { get; set; }
 	}
 }
