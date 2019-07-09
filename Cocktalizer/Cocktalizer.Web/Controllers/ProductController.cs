@@ -2,6 +2,7 @@ using System;
 using Cocktalizer.Database.EFCore;
 using Cocktalizer.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Cocktalizer.Web.Controllers
 {
@@ -13,9 +14,9 @@ namespace Cocktalizer.Web.Controllers
 		}
 
 		private DatabaseContext _context;
-		
+
 		[HttpPost]
-		public IActionResult Add([FromBody]Product product)
+		public IActionResult Add([FromBody] Product product)
 		{
 			try
 			{
@@ -30,15 +31,24 @@ namespace Cocktalizer.Web.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult Delete()
+		public IActionResult Delete([FromBody] Product product)
 		{
-			return NoContent();
+			try
+			{
+				_context.Products.Remove(product);
+				return Ok();
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+				return InternalServerError();
+			}
 		}
 
 		[HttpGet]
 		public IActionResult Get()
 		{
-			return NoContent();
+			return Ok(_context.Products);
 		}
 
 		[HttpGet]
@@ -48,7 +58,7 @@ namespace Cocktalizer.Web.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult Update()
+		public IActionResult Update([FromBody] Product product)
 		{
 			return NoContent();
 		}

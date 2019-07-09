@@ -13,5 +13,7 @@ namespace Cocktalizer.Web.Controllers
 		public IConfiguration DatabaseConfiguration => ApplicationConfiguration.Database;
 
 		public ILogger Logger => ApplicationConfiguration.Logger;
+		
+		protected IActionResult InternalServerError() => new InternalErrorResult();
 	}
 }
