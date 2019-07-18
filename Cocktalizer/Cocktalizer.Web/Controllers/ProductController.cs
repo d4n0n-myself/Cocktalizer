@@ -21,11 +21,12 @@ namespace Cocktalizer.Web.Controllers
 			try
 			{
 				_context.Products.Add(product);
+				_context.SaveChanges();
 				return Ok();
 			}
 			catch (Exception e)
 			{
-				Logger.Error(e, $"Failed to add Product entity with data : {product}");
+				Logger.Error(e, $"Failed to add Product: {product}");
 				return new InternalErrorResult();
 			}
 		}

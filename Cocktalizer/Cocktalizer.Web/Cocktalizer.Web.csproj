@@ -26,6 +26,8 @@
 
     <ItemGroup>
         <Content Update="appconfig.json" CopyToOutputDirectory="PreserveNewest" />
+        <Content Include="ClientApp\src\app\products-list\products-list.component.css" />
+        <Content Include="ClientApp\src\app\products-list\products-list.component.html" />
     </ItemGroup>
 
     <ItemGroup>
@@ -37,6 +39,17 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Cocktalizer.Database.EFCore\Cocktalizer.Database.EFCore.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <TypeScriptCompile Include="ClientApp\src\app\models\enums\measurementType.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\models\interfaces\cocktail.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\models\interfaces\ingridient.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\models\interfaces\product.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\products-list\products-list.component.spec.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\products-list\products-list.component.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\services\httpService\http.service.spec.ts" />
+      <TypeScriptCompile Include="ClientApp\src\app\services\httpService\http.service.ts" />
     </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
