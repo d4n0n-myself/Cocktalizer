@@ -1,4 +1,3 @@
-using System.Globalization;
 using Cocktalizer.Models.Core;
 using Cocktalizer.Models.Enums;
 
@@ -14,10 +13,10 @@ namespace Cocktalizer.Models
 		public override string ToString()
 		{
 			return string.Join(' ',
-				Name,
-				Category,
-				Price.ToString(CultureInfo.InvariantCulture),
-				Measurment.ToString());
+				$"{nameof(Name)}: {Name}",
+				$"{nameof(Category)}: {Category}",
+				$"{nameof(Price)}: {Price}",
+				$"{nameof(Measurment)}: {Measurment}");
 		}
 	}
 }
